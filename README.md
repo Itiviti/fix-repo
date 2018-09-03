@@ -1,5 +1,7 @@
 # fix-repo
 
+[![Build Status](https://travis-ci.org/ngyukman/fix-repo.svg?branch=master)](https://travis-ci.org/ngyukman/fix-repo)
+
 npm package for easy accessible FIX Repository information, without parsing the xml repository
 
 ## Installation
