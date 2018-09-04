@@ -1,16 +1,14 @@
 module.exports = {
     verbose: true,
-    collectCoverage: true,
     transform: {
-      "^.+\\.tsx?$": "ts-jest"
+        "^.+\\.(ts|tsx)$": "ts-jest"
     },
-    testRegex: "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    testMatch: [
+        "**/__tests__/*.+(ts|tsx|js)"
+    ],
     moduleFileExtensions: [
-      "ts",
-      "tsx",
-      "js",
-      "jsx",
-      "json",
-      "node"
-    ]
+        "ts",
+        "js",
+    ],
+    collectCoverage: true,
 };
