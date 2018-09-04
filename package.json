@@ -36,22 +36,5 @@
     "tslint-config-prettier": "^1.14.0",
     "typescript": "^3.0.1",
     "xml2js": "^0.4.19"
-  },
-  "jest": {
-    "verbose": true,
-    "collectCoverage": true,
-    "transform": {
-      "^.+\\.jsx?$": "babel-jest",
-      "^.+\\.tsx?$": "ts-jest"
-    },
-    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "jsx",
-      "json",
-      "node"
-    ]
   }
 }

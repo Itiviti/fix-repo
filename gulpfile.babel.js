@@ -71,7 +71,7 @@ gulp.task('test', () => {
     }))
 });
 
-gulp.task('default', gulp.series('clean', 'install', gulp.parallel('tslint', 'test'), 'build'));
+gulp.task('default', gulp.series('clean', 'install', 'tslint', 'build', 'test'));
 
 function parse(content, callback) {
     parseString(content, { tagNameProcessors: [ processors.stripPrefix ], normalize: true, preserveChildrenOrder: true, explicitChildren: true }, (error, xml) => {
