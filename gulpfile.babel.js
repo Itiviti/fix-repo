@@ -7,6 +7,7 @@ import { createProject } from "gulp-typescript";
 import sourcemaps from "gulp-sourcemaps";
 import { parseString, processors } from "xml2js";
 import merge from "merge2";
+import jestConfig from "./jest.config";
 
 import fs from "fs";
 
@@ -64,11 +65,8 @@ gulp.task('clean', () => {
 });
 
 gulp.task('test', () => {
-    return gulp.src('__tests__').pipe(jest({
-        "preprocessorIgnorePatterns": [
-            "build/", "node_modules/"
-        ],
-    }))
+    process.env.NODE_ENV = 'test';
+    return gulp.src('__tests__').pipe(jest(jestConfig))
 });
 
 gulp.task('default', gulp.series('clean', 'install', 'tslint', 'build', 'test'));
