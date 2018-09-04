@@ -37,7 +37,6 @@
     "xml2js": "^0.4.19"
   },
   "jest": {
-    "collectCoverage": true,
     "transform": {
       "^.+\\.(t|j)sx?$": "ts-jest"
     },
@@ -52,7 +51,7 @@
     ],
     "globals": {
       "ts-jest": {
-        "useBabelrc": false
+        "skipBabel": true
       }
     }
   }
