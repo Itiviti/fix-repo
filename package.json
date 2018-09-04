@@ -18,6 +18,7 @@
   "devDependencies": {
     "@types/jest": "^23.3.1",
     "babel-core": "^6.26.3",
+    "babel-jest": "^23.4.2",
     "babel-preset-env": "^1.7.0",
     "babel-preset-stage-3": "^6.24.1",
     "got": "^9.0.0",
@@ -37,6 +38,7 @@
     "xml2js": "^0.4.19"
   },
   "jest": {
+    "collectCoverage": true,
     "transform": {
       "^.+\\.(t|j)sx?$": "ts-jest"
     },
@@ -48,11 +50,6 @@
       "jsx",
       "json",
       "node"
-    ],
-    "globals": {
-      "ts-jest": {
-        "skipBabel": true
-      }
-    }
+    ]
   }
 }
