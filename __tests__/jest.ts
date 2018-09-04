@@ -17,13 +17,13 @@ fixRepos.forEach(fixRepo => {
         test.each(fixRepo.messages)('message %s property is not throwing', (message: Message) => {
             expect(message.category);
             message.structures.forEach(structure => {
-                expect(structure.id).toBeDefined();
+                expect(structure.type).toBeDefined();
             });
         });
 
         test.each(fixRepo.components)('component %s property is not throwing', (component: Component) => {
             component.structures.forEach(structure => {
-                expect(structure.id).toBeDefined();
+                expect(structure.type).toBeDefined();
             });
         });
     });

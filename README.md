@@ -14,7 +14,7 @@ To install the package, simply run the following
 
 To get a Fix50 field's type information:
 ```javascript
-import Fix50 from 'fix-repo';
+import { Fix50 } from 'fix-repo';
 
 const msgTypeField = Fix50.getField('35');
 const msgTypeCodeSet = msgTypeField.type;
