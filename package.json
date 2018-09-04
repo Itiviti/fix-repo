@@ -49,11 +49,6 @@
       "jsx",
       "json",
       "node"
-    ],
-    "globals": {
-      "ts-jest": {
-        "enableTsDiagnostics": true
-      }
-    }
+    ]
   }
 }
