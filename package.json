@@ -49,6 +49,11 @@
       "jsx",
       "json",
       "node"
-    ]
+    ],
+    "globals": {
+      "ts-jest": {
+        "useBabelrc": false
+      }
+    }
   }
 }
