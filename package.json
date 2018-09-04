@@ -38,6 +38,7 @@
     "xml2js": "^0.4.19"
   },
   "jest": {
+    "verbose": true,
     "collectCoverage": true,
     "transform": {
       "^.+\\.jsx?$": "babel-jest",
