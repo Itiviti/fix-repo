@@ -20,11 +20,11 @@
     "include": [
         "src/*.ts",
         "src/**/*.ts",
-        "test/*.ts",
-        "test/**/*.ts"
+        "__test__/*.ts",
     ],
     "exclude": [
         "node_modules",
         "build",
+        "resources",
     ]
 }
