@@ -1,6 +1,6 @@
 # fix-repo
 
-[![Build Status](https://travis-ci.org/ngyukman/fix-repo.svg?branch=master)](https://travis-ci.org/ngyukman/fix-repo)
+[![Build Status](https://travis-ci.org/ngyukman/fix-repo.svg?branch=master)](https://travis-ci.org/ngyukman/fix-repo) [![codecov](https://codecov.io/gh/ngyukman/fix-repo/branch/master/graph/badge.svg)](https://codecov.io/gh/ngyukman/fix-repo)
 
 npm package for easy accessible FIX Repository information, without parsing the xml repository
 

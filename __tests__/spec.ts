@@ -12,6 +12,12 @@ fixRepos.forEach(fixRepo => {
         test.each(fixRepo.fields)('field %s property is not throwing', (field: Field) => {
             expect(field.type);
             expect(field.baseCategroy);
+            expect(field.added);
+            expect(field.addedEP);
+            expect(field.updated);
+            expect(field.updatedEP);
+            expect(field.deprecated);
+            expect(field.deprecatedEP);
         });
 
         test.each(fixRepo.messages)('message %s property is not throwing', (message: Message) => {
@@ -26,5 +32,9 @@ fixRepos.forEach(fixRepo => {
                 expect(structure.type).toBeDefined();
             });
         });
+
+        test('section is defined', () => {
+            expect(fixRepo.sections).toBeDefined();
+        })
     });
 });
