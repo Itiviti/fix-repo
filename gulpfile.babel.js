@@ -8,6 +8,7 @@ import sourcemaps from "gulp-sourcemaps";
 import { parseString, processors } from "xml2js";
 import merge from "merge2";
 import jestConfig from "./jest.config";
+import codecov from 'gulp-codecov';
 
 import fs from "fs";
 
@@ -69,7 +70,11 @@ gulp.task('test', () => {
     return gulp.src('__tests__').pipe(jest(jestConfig))
 });
 
-gulp.task('default', gulp.series('clean', 'install', 'tslint', 'build', 'test'));
+gulp.task('coverage', () => {
+    return gulp.src('./coverage/lcov.info').pipe(codecov());
+});
+
+gulp.task('default', gulp.series('clean', 'install', 'tslint', 'build', 'test', 'coverage'));
 
 function parse(content, callback) {
     parseString(content, { tagNameProcessors: [ processors.stripPrefix ], normalize: true, preserveChildrenOrder: true, explicitChildren: true }, (error, xml) => {
