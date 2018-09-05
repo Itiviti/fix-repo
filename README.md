@@ -24,7 +24,9 @@ const msgTypeCodeSet = msgTypeField.type;
 
 Run the following command
 ```
+npm install -g gulp-cli
 npm install
+
 gulp
 ```
 
