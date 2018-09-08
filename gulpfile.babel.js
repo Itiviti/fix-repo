@@ -80,7 +80,7 @@ gulp.task('coverage', () => {
 });
 
 gulp.task('publish', done => {
-    spawn('npm', ['publish'], { stdio: 'inherit' }).on('close', done);
+    spawn('npm', ['publish'], { stdio: 'inherit', shell: true }).on('close', done);
 });
 
 gulp.task('tag', () =>
@@ -105,7 +105,7 @@ gulp.task('bump', () => {
 
 gulp.task('default', gulp.series('clean', 'install', 'tslint', 'build', 'test', 'coverage'));
 
-gulp.task('release', gulp.series('default', 'tag', 'publish', 'bump'));
+gulp.task('release', gulp.series('clean', 'install', 'tslint', 'build', 'test', 'tag', 'publish', 'bump'));
 
 function parse(content, callback) {
     parseString(content, { tagNameProcessors: [ processors.stripPrefix ], normalize: true, preserveChildrenOrder: true, explicitChildren: true }, (error, xml) => {
