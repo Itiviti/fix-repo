@@ -9,6 +9,11 @@ import { parseString, processors } from "xml2js";
 import merge from "merge2";
 import jestConfig from "./jest.config";
 import codecov from 'gulp-codecov';
+import { spawn } from 'child_process';
+import tagVersion from 'gulp-tag-version';
+import bump from 'gulp-bump';
+import git from 'gulp-git';
+import push from 'gulp-git-push';
 
 import fs from "fs";
 
@@ -74,7 +79,33 @@ gulp.task('coverage', () => {
     return gulp.src('./coverage/lcov.info').pipe(codecov());
 });
 
+gulp.task('publish', done => {
+    spawn('npm', ['publish'], { stdio: 'inherit' }).on('close', done);
+});
+
+gulp.task('tag', () =>
+    gulp.src(['./package.json'])
+        .pipe(tagVersion())
+        .pipe(push({
+            repository: 'origin',
+            refspec: 'HEAD'
+        }))
+);
+
+gulp.task('bump', () => {
+    gulp.src('./package.json')
+        .pipe(bump({ type: 'minor' }))
+        .pipe(gulp.dest('./'))
+        .pipe(git.commit('bump version'))
+        .pipe(push({
+            repository: 'origin',
+            refspec: 'HEAD'
+        }))
+})
+
 gulp.task('default', gulp.series('clean', 'install', 'tslint', 'build', 'test', 'coverage'));
+
+gulp.task('release', gulp.series('default', 'tag', 'publish', 'bump'));
 
 function parse(content, callback) {
     parseString(content, { tagNameProcessors: [ processors.stripPrefix ], normalize: true, preserveChildrenOrder: true, explicitChildren: true }, (error, xml) => {
