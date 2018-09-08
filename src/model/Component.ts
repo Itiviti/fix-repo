@@ -1,6 +1,6 @@
 import { Structure } from '.';
 import Repository from '../repository';
-import { IRepoComponent } from './../schema';
+import { IRepoComponent, IRepoDocumentation } from './../schema';
 import { VersionInfo } from './VersionInfo';
 
 export class Component extends VersionInfo {
@@ -22,10 +22,10 @@ export class Component extends VersionInfo {
     get abbrName() {
         return this.repoComponent.abbrName;
     }
-    get documentation() {
+    get documentation(): IRepoDocumentation | undefined {
         return this.repoComponent.documentation;
     }
-    get structures() {
+    get structures(): Structure[] {
         return Object.values(this.repoComponent.structures).map(s => new Structure(s, this.repo));
     }
 

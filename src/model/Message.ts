@@ -1,6 +1,6 @@
-import { Structure } from '.';
+import { Category, Structure } from '.';
 import Repository from '../repository';
-import { IRepoMessage } from './../schema';
+import { IRepoDocumentation, IRepoMessage } from './../schema';
 import { VersionInfo } from './VersionInfo';
 
 export class Message extends VersionInfo {
@@ -25,13 +25,13 @@ export class Message extends VersionInfo {
     get msgType() {
         return this.repoMessage.msgType;
     }
-    get documentation() {
+    get documentation(): IRepoDocumentation | undefined {
         return this.repoMessage.documentation;
     }
     get structures(): Structure[] {
         return Object.values(this.repoMessage.structures).map(s => new Structure(s, this.repo));
     }
-    get category() {
+    get category(): Category | string | undefined {
         if (this.repo.hasCategories) {
             return this.repo.getCategory(this.repoMessage.category);
         }

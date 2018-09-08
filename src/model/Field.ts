@@ -1,5 +1,7 @@
+import { Category } from '.';
 import Repository from '../repository';
-import { IRepoField } from '../schema';
+import { IRepoCodeSet, IRepoDocumentation, IRepoField } from '../schema';
+import { IRepoDataType } from './../schema';
 import { VersionInfo } from './VersionInfo';
 
 export class Field extends VersionInfo {
@@ -19,14 +21,21 @@ export class Field extends VersionInfo {
     get name() {
         return this.repoField.name;
     }
-    get type() {
-        if (this.repoField.type.endsWith('CodeSet')) {
-            return this.repo.getCodeSet(this.repoField.type);
+    get type(): IRepoCodeSet | IRepoDataType {
+        const codeSet = this.codeSet;
+        if (codeSet) {
+            return codeSet;
         }
         return this.repo.getDataType(this.repoField.type);
     }
     get unionDataType() {
         return this.repoField.unionDataType;
+    }
+    get codeSet(): IRepoCodeSet | undefined {
+        if (this.repoField.type.endsWith('CodeSet')) {
+            return this.repo.getCodeSet(this.repoField.type);
+        }
+        return undefined;
     }
     get lengthId() {
         return this.repoField.lengthId;
@@ -40,10 +49,10 @@ export class Field extends VersionInfo {
     get issue() {
         return this.repoField.issue;
     }
-    get documentation() {
+    get documentation(): IRepoDocumentation | undefined {
         return this.repoField.documentation;
     }
-    get baseCategroy() {
+    get baseCategroy(): Category | undefined {
         if (this.repoField.baseCategory) {
             return this.repo.getCategory(this.repoField.baseCategory);
         }

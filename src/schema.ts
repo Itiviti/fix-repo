@@ -35,7 +35,7 @@ export interface IRepoCategory extends IRepoVersionInfo {
 }
 
 export interface IRepoCodeSet extends IRepoBase {
-    codes: IRepoCode[];
+    codes: { [index: string]: IRepoCode };
     documentation?: IRepoDocumentation;
 }
 

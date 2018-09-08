@@ -1,3 +1,4 @@
+import { Component, Field } from '.';
 import Repository from '../repository';
 import { IRepoStructure } from '../schema';
 import { VersionInfo } from './VersionInfo';
@@ -19,11 +20,11 @@ export class Structure extends VersionInfo {
     get name() {
         return this.repoStructure.name;
     }
-    get type() {
+    get type(): Field | Component | string {
         if (this.repoStructure.type === 'fieldRef') {
-            return this.repo.getField(this.id);
+            return this.repo.getField(this.id)!;
         } else if (this.repoStructure.type === 'componentRef') {
-            return this.repo.getComponent(this.id);
+            return this.repo.getComponent(this.id)!;
         }
         return this.repoStructure.type;
     }

@@ -1,5 +1,5 @@
 import Repository from '../repository';
-import { IRepoCategory } from './../schema';
+import { IRepoCategory, IRepoSection } from './../schema';
 import { VersionInfo } from './VersionInfo';
 
 export class Category extends VersionInfo {
@@ -21,7 +21,7 @@ export class Category extends VersionInfo {
     get componentType() {
         return this.repoCategory.componentType;
     }
-    get section() {
+    get section(): IRepoSection | undefined {
         if (this.repoCategory.section) {
             return this.repo.getSection(this.repoCategory.section);
         }

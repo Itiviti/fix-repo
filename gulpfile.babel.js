@@ -204,7 +204,7 @@ function parseCodeSets(repo) {
                 }})
                 .sort((a, b) => a.sort - b.sort)
                 .reduce((codeMap, code) => {
-                    codeMap[code.id] = code;
+                    codeMap[code.value] = code;
                     return codeMap;
                 }, {}),
         };

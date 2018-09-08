@@ -11,7 +11,7 @@ export default class Repository {
 
     public getCategory(key: string) {
         if (!this.repo.categories || !this.repo.categories[key]) {
-            throw new Error(`${key} does not exists in Categories`);
+            return undefined;
         }
         return new Category(this.repo.categories[key], this);
     }
@@ -30,7 +30,7 @@ export default class Repository {
     public getCodeSet(key: string) {
         const result = this.repo.codeSets[key];
         if (!result) {
-            throw new Error(`${key} does not exists in Codesets`);
+            return undefined;
         }
         return this.repo.codeSets[key];
     }
@@ -41,7 +41,7 @@ export default class Repository {
 
     public getComponent(key: string) {
         if (!this.repo.components || !this.repo.components[key]) {
-            throw new Error(`${key} does not exists in Components`);
+            return undefined;
         }
         return new Component(this.repo.components[key], this);
     }
@@ -50,9 +50,11 @@ export default class Repository {
         return Object.values(this.repo.components).map(c => new Component(c, this));
     }
 
-    public getDataType(key: string) {
-        if (!this.repo.dataTypes || !this.repo.dataTypes[key]) {
-            return key;
+    public getDataType(key: string): IRepoDataType {
+        if (!this.repo.dataTypes[key]) {
+            return {
+                name: key
+            };
         }
         return this.repo.dataTypes[key];
     }
@@ -63,7 +65,7 @@ export default class Repository {
 
     public getSection(key: string) {
         if (!this.repo.sections || !this.repo.sections[key]) {
-            throw new Error(`${key} does not exists in Sections`);
+            return undefined;
         }
         return this.repo.sections[key];
     }
@@ -80,6 +82,9 @@ export default class Repository {
     }
 
     public getField(tag: string) {
+        if (!this.repo.fields[tag]) {
+            return undefined;
+        }
         return new Field(this.repo.fields[tag], this);
     }
 
