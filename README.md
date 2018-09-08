@@ -1,6 +1,6 @@
 # fix-repo
 
-[![npm version](https://badge.fury.io/js/fix-repo.svg)](https://badge.fury.io/js/fix-repo) [![Build Status](https://travis-ci.org/ngyukman/fix-repo.svg?branch=master)](https://travis-ci.org/Ullink/fix-repo) [![codecov](https://codecov.io/gh/ngyukman/fix-repo/branch/master/graph/badge.svg)](https://codecov.io/gh/Ullink/fix-repo)
+[![npm version](https://badge.fury.io/js/fix-repo.svg)](https://badge.fury.io/js/fix-repo) [![Build Status](https://travis-ci.org/Ullink/fix-repo.svg?branch=master)](https://travis-ci.org/Ullink/fix-repo) [![codecov](https://codecov.io/gh/Ullink/fix-repo/branch/master/graph/badge.svg)](https://codecov.io/gh/Ullink/fix-repo)
 
 npm package for easy accessible FIX Repository information, without parsing the xml repository
 
