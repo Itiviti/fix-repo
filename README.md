@@ -12,12 +12,13 @@ To install the package, simply run the following
 
 ## Usage
 
-To get a Fix50 field's type information:
+To get information for `35=D` in `FIX 5.0`:
 ```javascript
 import { Fix50 } from 'fix-repo';
 
 const msgTypeField = Fix50.getField('35');
-const msgTypeCodeSet = msgTypeField.type;
+const msgTypeCodeSet = msgTypeField.codeSet;
+const code = msgTypeCodeSet['D']; // code.name === 'NewOrderSingle'
 ```
 
 ## To Build
