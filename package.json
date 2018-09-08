@@ -2,8 +2,13 @@
   "name": "fix-repo",
   "version": "0.3.0",
   "description": "JS library for FIX repository information",
+  "homepage": "https://github.com/Ullink/fix-repo#readme",
   "main": "build/index.js",
   "types": "build/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ullink/fix-repo.git"
+  },
   "files": [
     "build/",
     "src/",
