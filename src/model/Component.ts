@@ -28,6 +28,10 @@ export class Component extends VersionInfo {
     get structures(): Structure[] {
         return Object.values(this.repoComponent.structures).map(s => new Structure(s, this.repo));
     }
+    public getStructure(key: string) {
+        const structure = this.repoComponent.structures[key];
+        return new Structure(structure, this.repo);
+    }
 
     public toJSON() {
         return this.repoComponent;

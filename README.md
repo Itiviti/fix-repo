@@ -18,7 +18,30 @@ import { Fix50 } from 'fix-repo';
 
 const msgTypeField = Fix50.getField('35');
 const msgTypeCodeSet = msgTypeField.codeSet;
-const code = msgTypeCodeSet['D']; // code.name === 'NewOrderSingle'
+const code = msgTypeCodeSet.codes['D']; // code.name === 'NewOrderSingle'
+```
+
+To get message type info in `FIX 4.4`:
+```javascript
+import { Fix44 } from 'fix-repo';
+
+function structureConsumer(structure: Structure) {
+    const structureType = structure.type;
+    if (structureType instanceof Group) {
+        // num tag of the Repeating Group
+        const numTag = structureType.numInGroupId;
+        // Could consume the repeating group's structures by recursion
+        structureType.structures.forEach(s => structureConsumer(s));
+    } else if (structureType instanceof Field) {
+        // structureType is Field
+    } else if (structureType instanceof Component) {
+        // Could consume the component's structures by recursion
+        structureType.structures.forEach(s => structureConsumer(s));
+    }
+}
+
+const msgType = Fix44.getMessage('D');
+msgType.structures.forEach(structure => structureConsumer);
 ```
 
 ## To Build

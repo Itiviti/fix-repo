@@ -1,4 +1,4 @@
-import { Component, Field } from '.';
+import { Component, Field, Group } from '.';
 import Repository from '../repository';
 import { IRepoStructure } from '../schema';
 import { VersionInfo } from './VersionInfo';
@@ -20,13 +20,21 @@ export class Structure extends VersionInfo {
     get name() {
         return this.repoStructure.name;
     }
-    get type(): Field | Component | string {
+    get type(): Field | Component | Group {
         if (this.repoStructure.type === 'fieldRef') {
             return this.repo.getField(this.id)!;
         } else if (this.repoStructure.type === 'componentRef') {
             return this.repo.getComponent(this.id)!;
+        } else if (this.repoStructure.type === 'groupRef') {
+            return this.repo.getGroup(this.id)!;
         }
-        return this.repoStructure.type;
+        return new Group({
+            id: this.id,
+            name: this.name,
+            numInGroupId: this.repoStructure.numInGroupId!,
+            numInGroupName: this.repoStructure.numInGroupName!,
+            structures: { }
+        }, this.repo);
     }
     get required() {
         return this.repoStructure.required;

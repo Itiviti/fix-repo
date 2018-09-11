@@ -117,6 +117,7 @@ function parse(content, callback) {
         const fields = parseFields(repo);
         const messages = parseMessages(repo);
         const sections = parseSections(repo);
+        const groups = parseGroups(repo);
 
         const result = {
             categories,
@@ -124,6 +125,7 @@ function parse(content, callback) {
             components,
             dataTypes,
             fields,
+            groups,
             messages,
             sections
         }
@@ -197,9 +199,24 @@ function parseComponents(repo) {
     }, {});
 }
 
+function parseGroups(repo) {
+    const groups = repo["components"][0]['group'];
+    if (!groups) {
+        return undefined;
+    }
+    return groups.reduce((map, group) => {
+        map[group.$.id] = {
+            ...group.$,
+            documentation: typeof group.annotation[0].documentation[0] === "string" ? group.annotation[0].documentation[0] : undefined,
+            structures: parseStructure(group.$$),
+        };
+        return map;
+    }, {});
+}
+
 function parseMessages(repo) {
     return repo["messages"][0]["message"].reduce((map, message) => {
-        map[message.$.id] = {
+        map[message.$.msgType] = {
             ...message.$,
             documentation: parseDocument(message.annotation[0].documentation),
             structures: parseStructure(message.structure[0].$$),
@@ -207,6 +224,7 @@ function parseMessages(repo) {
         return map;
     }, {});
 }
+
 
 function parseStructure(structure) {
     return structure.filter(node => node["#name"] !== "annotation").reduce((map, node) => {

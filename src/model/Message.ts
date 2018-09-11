@@ -31,6 +31,10 @@ export class Message extends VersionInfo {
     get structures(): Structure[] {
         return Object.values(this.repoMessage.structures).map(s => new Structure(s, this.repo));
     }
+    public getStructure(key: string) {
+        const structure = this.repoMessage.structures[key];
+        return new Structure(structure, this.repo);
+    }
     get category(): Category | string | undefined {
         if (this.repo.hasCategories) {
             return this.repo.getCategory(this.repoMessage.category);

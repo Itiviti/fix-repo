@@ -69,6 +69,8 @@ export interface IRepoStructure extends IRepoBase, IRepoVersionInfo {
     type: string;
     required: boolean;
     documentation?: string;
+    numInGroupId?: string;
+    numInGroupName?: string;
 }
 
 export interface IRepoDataType extends IRepoVersionInfo {
@@ -80,11 +82,20 @@ export interface IRepoDataType extends IRepoVersionInfo {
 }
 
 export interface IRepoMessage extends IRepoBase, IRepoVersionInfo {
-    msgType: string,
-    category: string,
-    section?: string,
-    abbrName?: string,
+    msgType: string;
+    category: string;
+    section?: string;
+    abbrName?: string;
     documentation?: IRepoDocumentation;
+    structures: { [index: string]: IRepoStructure };
+}
+
+export interface IRepoGroup extends IRepoBase, IRepoVersionInfo {
+    numInGroupId: string;
+    numInGroupName: string;
+    category?: string;
+    abbrName?: string;
+    documentation?: string;
     structures: { [index: string]: IRepoStructure };
 }
 
@@ -96,4 +107,5 @@ export interface IRepo {
     fields: { [index: string]: IRepoField };
     messages: { [index: string]: IRepoMessage };
     sections?: { [index: string]: IRepoSection };
+    groups?: { [index: string]: IRepoGroup };
 }

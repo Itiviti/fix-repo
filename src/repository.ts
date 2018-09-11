@@ -1,5 +1,5 @@
 
-import { Category, Component, Field, Message } from './model';
+import { Category, Component, Field, Group, Message } from './model';
 import { IRepo, IRepoCodeSet, IRepoDataType, IRepoSection } from './schema';
 
 export default class Repository {
@@ -50,6 +50,20 @@ export default class Repository {
         return Object.values(this.repo.components).map(c => new Component(c, this));
     }
 
+    public getGroup(key: string) {
+        if (!this.repo.groups || !this.repo.groups[key]) {
+            return undefined;
+        }
+        return new Group(this.repo.groups[key], this);
+    }
+
+    get groups(): Group[] {
+        if (!this.repo.groups) {
+            return [];
+        }
+        return Object.values(this.repo.groups).map(g => new Group(g, this));
+    }
+
     public getDataType(key: string): IRepoDataType {
         if (!this.repo.dataTypes[key]) {
             return {
@@ -90,5 +104,12 @@ export default class Repository {
 
     get messages(): Message[] {
         return Object.values(this.repo.messages).map(message => new Message(message, this));
+    }
+
+    public getMessage(msgType: string) {
+        if (!this.repo.messages[msgType]) {
+            return undefined;
+        }
+        return new Message(this.repo.messages[msgType], this);
     }
 }
