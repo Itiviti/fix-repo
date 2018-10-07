@@ -1,6 +1,6 @@
 {
   "name": "fix-repo",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "JS library for FIX repository information",
   "homepage": "https://github.com/Ullink/fix-repo#readme",
   "main": "build/index.js",
