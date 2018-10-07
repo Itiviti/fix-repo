@@ -92,7 +92,7 @@ gulp.task('tag', () =>
         }))
 );
 
-gulp.task('bump', () => {
+gulp.task('bump', () =>
     gulp.src('./package.json')
         .pipe(bump({ type: 'minor' }))
         .pipe(gulp.dest('./'))
@@ -101,7 +101,7 @@ gulp.task('bump', () => {
             repository: 'origin',
             refspec: 'HEAD'
         }))
-})
+);
 
 gulp.task('default', gulp.series('clean', 'install', 'tslint', 'build', 'test', 'coverage'));
 
